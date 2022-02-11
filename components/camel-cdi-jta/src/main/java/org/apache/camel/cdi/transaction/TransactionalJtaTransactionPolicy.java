@@ -69,15 +69,19 @@ public abstract class TransactionalJtaTransactionPolicy extends JtaTransactionPo
     protected void runWithTransaction(final Runnable runnable, final boolean isNew) throws Throwable {
         if (isNew) {
             begin();
+            LOG.debug("begin transaction");
         }
         try {
+            LOG.debug("run start " + runnable);
             runnable.run();
+            LOG.debug("run end " + runnable);
         } catch (Throwable e) {
             rollback(isNew);
             throw e;
         }
         if (isNew) {
             commit();
+            LOG.debug("commit transaction");
         }
     }
 

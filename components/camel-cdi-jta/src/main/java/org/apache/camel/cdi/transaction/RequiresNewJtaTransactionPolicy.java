@@ -19,8 +19,12 @@ package org.apache.camel.cdi.transaction;
 import javax.inject.Named;
 import javax.transaction.Transaction;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Named("PROPAGATION_REQUIRES_NEW")
 public class RequiresNewJtaTransactionPolicy extends TransactionalJtaTransactionPolicy {
+    private static final Logger LOG = LoggerFactory.getLogger(TransactionalJtaTransactionPolicy.class);
 
     @Override
     public void run(final Runnable runnable) throws Throwable {

@@ -230,9 +230,13 @@ public class TransactionErrorHandler extends ErrorHandlerSupport
      */
     protected void processByErrorHandler(final Exchange exchange) {
         try {
+            LOG.debug("process start " + output.getClass().getName() + " with " + exchange);
             output.process(exchange);
         } catch (Throwable e) {
+            LOG.debug("process throws " + e);
             throw new RuntimeCamelException(e);
+        } finally {
+            LOG.debug("process end " + output + " with " + exchange);
         }
     }
 
