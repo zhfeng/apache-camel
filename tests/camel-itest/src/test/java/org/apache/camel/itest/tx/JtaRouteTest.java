@@ -19,7 +19,7 @@ package org.apache.camel.itest.tx;
 import org.apache.camel.EndpointInject;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.cdi.transaction.RequiresNewJtaTransactionPolicy;
+import org.apache.camel.cdi.transaction.RequiredJtaTransactionPolicy;
 import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.test.junit5.CamelTestSupport;
 import org.junit.jupiter.api.Test;
@@ -36,9 +36,9 @@ public class JtaRouteTest extends CamelTestSupport {
         return new RouteBuilder() {
             @Override
             public void configure() throws Exception {
-                //context.getRegistry().bind("PROPAGATION_REQUIRES_NEW", new SpringTransactionPolicy(
-                //        new JtaTransactionManager(new TransactionManagerImple())));
-                context.getRegistry().bind("PROPAGATION_REQUIRES_NEW", new RequiresNewJtaTransactionPolicy());
+                //context.getRegistry().bind("PROPAGATION_REQUIRES_NEW",
+                //        new SpringTransactionPolicy(new JtaTransactionManager(new TransactionManagerImple())));
+                context.getRegistry().bind("PROPAGATION_REQUIRES_NEW", new RequiredJtaTransactionPolicy());
 
                 from("direct:requires_new")
                         .transacted("PROPAGATION_REQUIRES_NEW")
