@@ -16,10 +16,15 @@
  */
 package org.apache.camel.component.kafka.serde;
 
+import org.apache.camel.Exchange;
+
 public class DefaultKafkaHeaderDeserializer implements KafkaHeaderDeserializer {
 
     @Override
     public Object deserialize(final String key, final byte[] value) {
+        if (key.equals(Exchange.SAGA_LONG_RUNNING_ACTION)) {
+            return new String(value);
+        }
         return value;
     }
 }
