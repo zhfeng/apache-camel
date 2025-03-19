@@ -36,7 +36,7 @@ class DefaultHttpRequestBodyHandler extends HttpRequestBodyHandler {
 
     @Override
     void configureRoute(Route route) {
-        route.handler(delegate);
+        //route.handler(delegate);
     }
 
     @Override
@@ -44,6 +44,8 @@ class DefaultHttpRequestBodyHandler extends HttpRequestBodyHandler {
         if (!isMultiPartFormData(routingContext) && !isFormUrlEncoded(routingContext)) {
             final RequestBody requestBody = routingContext.body();
             message.setBody(requestBody.buffer());
+        } else {
+            message.setBody(routingContext.request());
         }
         return Future.succeededFuture();
     }

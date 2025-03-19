@@ -209,7 +209,7 @@ public class VertxPlatformHttpConsumer extends DefaultConsumer
                 handleProxy(ctx, exchange);
             }
 
-            populateMultiFormData(ctx, exchange.getIn(), getEndpoint().getHeaderFilterStrategy());
+            //populateMultiFormData(ctx, exchange.getIn(), getEndpoint().getHeaderFilterStrategy());
 
             vertx.executeBlocking(() -> processExchange(exchange), false).onComplete(processExchangeResult -> {
                 if (processExchangeResult.succeeded()) {
