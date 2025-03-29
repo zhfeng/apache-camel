@@ -20,7 +20,6 @@ import org.apache.commons.lang3.StringUtils;
 
 public class PathCreator {
     public String createNewUri(String uri) {
-        System.out.println("the new uri is " + StringUtils.replaceOnce(uri, "/camel", ""));
         return "vertx-http:" + StringUtils.replaceOnce(uri, "/camel", "");
     }
 }
