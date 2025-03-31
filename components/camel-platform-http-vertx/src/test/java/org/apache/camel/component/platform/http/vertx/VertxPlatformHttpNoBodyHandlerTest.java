@@ -63,10 +63,6 @@ public class VertxPlatformHttpNoBodyHandlerTest {
                 @Override
                 public void configure() {
                     from("platform-http:/camel?matchOnUriPrefix=true&useBodyHandler=false")
-                            .process(exchange -> {
-                                HttpMessage message = exchange.getMessage(HttpMessage.class);
-                                message.setBody(message.getRequest());
-                            })
                             .removeHeader("CamelHttpUri")
                             .setHeader("OrgCamelHttpUri", simple(mockUrl + "${header.CamelHttpPath}"))
                             .setHeader("CamelHttpPath", simple(""))

@@ -34,6 +34,7 @@ public class NoOpHttpRequestBodyHandler extends HttpRequestBodyHandler {
     @Override
     Future<Void> handle(RoutingContext routingContext, Message message) {
         routingContext.request().pause();
+        message.setBody(routingContext.request());
         return Future.succeededFuture();
     }
 }
